@@ -1,5 +1,5 @@
 import { Router, Response, Request } from 'express'
-import { saveUser, listUsers, login } from './controller/UserController'
+import { saveUser, listUsers, login, forgotPassword } from './controller/UserController'
 
 import { auth } from './middlewares/auth'
 
@@ -10,10 +10,11 @@ routes.get('/', (request: Request, response: Response) => {
 })
 
 routes.post('/session', login)
+routes.post('/users', saveUser)
+routes.post('/forgot-password', forgotPassword)
 
 routes.use(auth)
 
 routes.get('/users', listUsers)
-routes.post('/users', saveUser)
 
 export default routes
